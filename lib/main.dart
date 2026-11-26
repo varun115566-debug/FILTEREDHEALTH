@@ -245,7 +245,7 @@ class _InsightsPageState extends State<InsightsPage> {
     const Text('Explore a possible routine change. This is not a prediction.', style: TextStyle(color: muted)),
     const SizedBox(height: 12),
     Container(padding: const EdgeInsets.all(18), decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(24)), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      DropdownButtonFormField<String>(value: scenario, isExpanded: true, decoration: const InputDecoration(labelText: 'Try a scenario', border: OutlineInputBorder()), items: const [
+      DropdownButtonFormField<String>(initialValue: scenario, isExpanded: true, decoration: const InputDecoration(labelText: 'Try a scenario', border: OutlineInputBorder()), items: const [
         DropdownMenuItem(value: 'Move workout earlier', child: Text('Move workout earlier')),
         DropdownMenuItem(value: 'Add a rest day', child: Text('Add a rest day')),
         DropdownMenuItem(value: 'Keep bedtime steadier', child: Text('Keep bedtime steadier')),
@@ -282,7 +282,27 @@ class _TimelineRow extends StatelessWidget {
       Text(detail, style: const TextStyle(fontSize: 11, color: muted)),
     ])),
     const SizedBox(width: 8),
-    SizedBox(width: 58, height: 36, child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: bars.map((h) => Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 2), child: Container(height: h.toDouble() * .55, decoration: BoxDecoration(color: const Color(0xFFB9D58F), borderRadius: BorderRadius.circular(5))))).toList())),
+    SizedBox(
+      width: 58,
+      height: 36,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: bars.map<Widget>((h) {
+          return Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2),
+              child: Container(
+                height: h.toDouble() * 0.55,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFB9D58F),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
+            ),
+          );
+        }).toList(),
+      ),
+    ),
   ]);
 }
 
